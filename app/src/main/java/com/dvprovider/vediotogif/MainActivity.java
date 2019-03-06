@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding mainBinding;
     private ProgressDialog pd;
     private int REQUEST_FOR_PERMISSION = 1001;
+    
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
