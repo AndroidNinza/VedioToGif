@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
+import android.databinding.DataBindingUtil;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
+import com.dvprovider.vediotogif.databinding.ActivityMainBinding;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -45,34 +47,17 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getName();
-
-    Activity activity;
-
-    Button btn_convert;
-    ImageView iv_gif_loader;
-    VideoView mVideoView;
-
-    ProgressDialog pd;
+    private Activity activity;
+    private ActivityMainBinding mainBinding;
+    private ProgressDialog pd;
     private int REQUEST_FOR_PERMISSION = 1001;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         activity = MainActivity.this;
-
-        btn_convert = (Button) findViewById(R.id.btn_convert);
-        iv_gif_loader = (ImageView) findViewById(R.id.iv_gif_loader);
-        mVideoView  = (VideoView)findViewById(R.id.videoView);
-
-        btn_convert.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkPermission();
-            }
-        });
-
+        mainBinding.btnConvert.setOnClickListener(view -> checkPermission());
         loadVideo();
     }
 
@@ -81,10 +66,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             String uri = "android.resource://" + getPackageName() + "/" + R.raw.countdown;
             getWindow().setFormat(PixelFormat.TRANSLUCENT);
-            mVideoView.setMediaController(new MediaController(this));
+            mainBinding.videoView.setMediaController(new MediaController(this));
             Uri video = Uri.parse(uri);
-            mVideoView.setVideoURI(video);
-            mVideoView.start();
+            mainBinding.videoView.setVideoURI(video);
+            mainBinding.videoView.start();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -114,12 +99,6 @@ public class MainActivity extends AppCompatActivity {
         return gitFile;
     }
 
-    /*private void loadGif(byte[] gif) {
-
-        Bitmap bmp = BitmapFactory.decodeByteArray(gif, 0, gif.length);
-        iv_gif_loader.setImageBitmap(Bitmap.createScaledBitmap(bmp, iv_gif_loader.getWidth(),
-                iv_gif_loader.getHeight(), false));
-    }*/
 
     private File saveGIF(byte[] gif)
     {
@@ -182,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
             protected void onPreExecute() {
                 super.onPreExecute();
                 pd = new ProgressDialog(MainActivity.this);
-                pd.setMessage("Please wait a while we are processing...");
+                pd.setMessage(getResources().getString(R.string.plz_wait));
                 pd.show();
             }
 
@@ -200,9 +179,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     Glide.with(activity)
                             .load(file)
-                            .into(iv_gif_loader);
+                            .into(mainBinding.ivGifLoader);
                 }else{
-                    Toast.makeText(activity, "Oppes, File not converted successfully, please try again",
+                    Toast.makeText(activity, getResources().getString(R.string.error_while_convert),
                             Toast.LENGTH_LONG).show();
                 }
             }
