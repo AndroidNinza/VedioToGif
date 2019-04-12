@@ -3,6 +3,8 @@
     <string name="message">Here we go to click on convert to start video to GIF !</string>
     <string name="plz_wait">Please wait a while we are processing...</string>
     <string name="error_while_convert">Ops, File not converted successfully, please try again</string>
-    <string name="dev_v1.0">Dev v1.0 is created</string>
+    <string name="dev_v1.0">Dev v1.0 is created. I am just extending the string</string>
     <string name="dev_v1.0.1">Dev v1.0.1 extending the string</string>
+    <string name="test_it"> This is first message</string>
+    <string name="this_is_second_msg">This is second message</string>
 </resources>
