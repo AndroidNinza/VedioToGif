@@ -4,5 +4,5 @@
     <string name="plz_wait">Please wait a while we are processing...</string>
     <string name="error_while_convert">Ops, File not converted successfully, please try again</string>
     <string name="dev_v1.0">Dev v1.0 is created</string>
-    <string name="dev_v1.0.1">Dev v1.0.1</string>
+    <string name="dev_v1.0.1">Dev v1.0.1 extending the string</string>
 </resources>
