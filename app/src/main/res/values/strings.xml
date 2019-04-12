@@ -7,4 +7,5 @@
     <string name="dev_v1.0.1">Dev v1.0.1 extending the string</string>
     <string name="test_it"> This is first message</string>
     <string name="this_is_second_msg">This is second message</string>
+    <string name="master_g">This string is added by master</string>
 </resources>
