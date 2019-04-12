@@ -8,4 +8,5 @@
     <string name="test_it"> This is first message</string>
     <string name="this_is_second_msg">This is second message</string>
     <string name="master_g">This string is added by master</string>
+    <string name="child_c">Child confirming the message which was add by parents</string>
 </resources>
